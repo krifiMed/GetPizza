@@ -1,0 +1,87 @@
+index:
+    path: /
+    controller: App\Controller\DefaultController::index
+
+client:
+    path: /client
+    controller: App\Controller\RestaurantsController::index
+
+mesRestaurants:
+    path: /mesrestaurants
+    controller: App\Controller\RestaurantsController::mesRestaurants
+
+mesCommandesGerant:
+    path: /mescommandesgerant
+    controller: App\Controller\RestaurantsController::mesCommandesGerant
+
+mesCommandes:
+    path: /mescommandes
+    controller: App\Controller\RestaurantsController::mesCommandesClient
+
+delete_restau:
+    path: /delete/{id}
+    controller: App\Controller\RestaurantsController::removeRestaurant
+
+traite_restau:
+    path: /traite/{id}
+    controller: App\Controller\RestaurantsController::traiteCommande
+
+profil_client:
+    path: /client/profil
+    controller: App\Controller\RestaurantsController::monprofilClient
+
+modif_restau:
+    path: /modif/{id}
+    controller: App\Controller\RestaurantsController::modifRestaurant
+
+details_restau:
+    path: /details/{id}
+    controller: App\Controller\RestaurantsController::detailsRestaurant
+consulterprofil:
+    path: /voirprofil/{id}
+    controller: App\Controller\RestaurantsController::voirprofil
+
+details_restau_client:
+    path: /detailsClient/{id}
+    controller: App\Controller\RestaurantsController::detailsRestaurantClient
+
+commander_client:
+    path: /commanderClient/{id}
+    controller: App\Controller\RestaurantsController::commanderClient
+
+add_restau:
+    path: /add
+    controller: App\Controller\RestaurantsController::addRestaurant
+
+add_pizza_restau:
+    path: /add_pizza_restaurant/{id}
+    controller: App\Controller\RestaurantsController::addPizzaToRestaurant
+
+remove_pizza_restau:
+    path: /remove_pizza_restaurant/{id}
+    controller: App\Controller\RestaurantsController::removePizzaRestaurant
+
+modif_pizza_restau:
+    path: /modif_pizza_restaurant/{id}
+    controller: App\Controller\RestaurantsController::modifPizzaToRestaurant
+
+client_admin:
+    path: /admin/clients
+    controller: App\Controller\RestaurantsController::clientAdmin
+
+gerant_admin:
+    path: /admin/gerants
+    controller: App\Controller\RestaurantsController::gerantAdmin
+
+login:
+    path: /login
+    controller: App\Controller/SecurityController::login
+
+
+remove_client:
+    path: /removeclient/{id}
+    controller: App\Controller\RestaurantsController::removeClient
+
+remove_gerant:
+    path: /removeclient/{id}
+    controller: App\Controller\RestaurantsController::removeGerant

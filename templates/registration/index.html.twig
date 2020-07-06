@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RegistrationController!{% endblock %}
+
+{% block slider %}
+
+{% endblock %}
+
+{% block container %}
+
+{% endblock %}
+
+{% block login %}
+
+    {% if app.session.flashBag.has('error') %}
+        <div class="alert alert-danger">
+            {% for msg in app.session.flashBag.get('error') %}
+                {{ msg }}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <form  method="post" class="contact-form" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input type="text" name = "name" class="form-control" minlength="5" maxlength="15" placeholder="Nom de l'utilisateur">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input type="text" name="prenom" minlength="5" maxlength="15" class="form-control" placeholder="prenom">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="email" class="form-control" minlength="10" max="30" name="email" placeholder="email">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" minlength="5" maxlength="25" name="password" placeholder="password">
+        </div>
+
+        <div class="form-group">
+            <input type="text" class="form-control" maxlength="10" minlength="8" name="tel" placeholder="tel">
+        </div>
+        <div class="form-group">
+            <input type="file" name="photo" class="form-control" placeholder="photo" enctype="multipart/form-data">
+        </div>
+
+        <div class="form-group">
+            <select name="role" id="" class="form-control">
+                <option value="admin" class="text-danger">Admin</option>
+                <option value="gerant" class="text-info">gerant</option>
+                <option value="client" class="text-info">client</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <button   class="btn btn-primary py-3 px-5">Ajouter</button>
+        </div>
+    </form>
+{% endblock %}
+
+
+{% block services %}
+{% endblock %}
+
+{% block contact %}
+
+{% endblock %}
+

@@ -1,0 +1,88 @@
+{% extends 'base2.html.twig' %}
+
+
+{% block navbar %}
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><span class="flaticon-pizza-1 mr-1"></span>Get-Pizza<br><small>Espace Client</small></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item "><a href="{{ path('index') }}" class="nav-link">Acceuil</a></li>
+                    <li class="nav-item"><a href="{{ path('profil_client') }}" class="nav-link">Profil</a></li>
+                    <li class="nav-item"><a href="{{path('client')}}" class="nav-link">Restaurants</a></li>
+                    <li class="nav-item active"><a href="{{ path('mesCommandes') }}" class="nav-link">Mes Commandes</a></li>
+                    </li>
+                    <li class="nav-item"><a href="#" class="nav-link"></a></li>
+                    </li>
+                    <li class="nav-item"><a href="#" class="nav-link"></a></li>
+                    </li>
+
+                    <li style="color: red;" class="{% if mainNavHome is defined %}active{% endif %}">
+                        <a class="nav-link" href="{{path('app_logout')}}">Se deconnecter</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+{% block slider %}
+
+{% endblock %}
+
+{% block blog %}
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center mb-5 pb-3">
+                <div class="col-md-7 heading-section ftco-animate text-center">
+                    {% block flash %}
+                        {% if app.session.flashBag.has('success') %}
+                            <div class="alert alert-success">
+                                {% for msg in app.session.flashBag.get('success') %}
+                                    {{ msg }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                    {% endblock %}
+                    <h2 class="mb-4">Voici tes commandes </h2>
+                    <p> vous pouvez ici trouvé les commandes lancé par vous meme triée par date</p>
+
+                    <center>
+                        <div class="row">
+                            {% for c in commandes  %}
+
+                                <div class="pricing-entry d-flex ftco-animate">
+                                    <div class="" > {{ c.date |date('d/m/Y') }}</div>
+                                    <div class="desc pl-3">
+
+                                        <div class="d-flex text align-items-center">
+                                            <h3><span> {{ c.quantite }} : {{ c.name }} - {{ c.type }}</span></h3>
+                                            <span class="price">{% if c.traite == false %}
+                                                <p class="text-danger">pas encore Traité</p>
+                                                {% else %}
+                                                    <p class="text-primary"> Traité</p>
+                                                {% endif %}</span>
+                                        </div>
+                                        <div class="d-block align-content-center" >
+                                            <p>{{ c.idrestaurant.name }}</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            {% endfor %}
+                        </div>
+                    </center>
+
+                </div>
+    </section>
+
+    </div>
+    </div>
+
+    </div>
+    </section>
+{% endblock %}

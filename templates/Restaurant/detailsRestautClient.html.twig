@@ -1,0 +1,131 @@
+{% extends 'base2.html.twig' %}
+
+{% block navbar %}
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><span class="flaticon-pizza-1 mr-1"></span>Get-Pizza<br><small>Espace Client</small></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item "><a href="{{ path('index') }}" class="nav-link">Acceuil</a></li>
+                    <li class="nav-item"><a href="{{ path('profil_client') }}" class="nav-link">Profil</a></li>
+                    <li class="nav-item active"><a href="{{path('client')}}" class="nav-link">Restaurants</a></li>
+                    <li class="nav-item"><a href="{{ path('mesCommandes') }}" class="nav-link">Mes Commandes</a></li>
+                    </li>
+                    <li class="nav-item"><a href="#" class="nav-link"></a></li>
+                    </li>
+                    <li class="nav-item"><a href="#" class="nav-link"></a></li>
+                    </li>
+
+                    <li style="color: red;" class="{% if mainNavHome is defined %}active{% endif %}">
+                        <a class="nav-link" href="{{path('app_logout')}}">Se deconnecter</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+{% block slider %}
+
+{% endblock %}
+
+
+{% block blog %}
+    <section class="ftco-about d-md-flex">
+        <div class="one-half img" style="background-image: url({{asset('theme/images/')}}{{ r.photo }});"></div>
+        <div class="one-half ftco-animate fadeInUp ftco-animated">
+            <div class="heading-section ftco-animate fadeInUp ftco-animated">
+                <h2 class="mb-4">Welcome to <span class="flaticon-pizza"></span> {{ r.name }}</h2>
+                <br>
+                <br>
+
+            </div>
+            <div>
+                <p>{{ r.description }}</p>
+                <p><span class="icon icon-map-marker"></span> {{ r.adresse }}</p>
+                <p><span class="icon icon-phone"></span> {{ r.tel }}</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center mb-5 pb-3">
+                <div class="col-md-7 heading-section ftco-animate text-center fadeInUp ftco-animated">
+                    {% block flash %}
+                        {% if app.session.flashBag.has('success') %}
+                            <div class="alert alert-success">
+                                {% for msg in app.session.flashBag.get('success') %}
+                                    {{ msg }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                    {% endblock %}
+                    <h2 class="mb-4">Notre Menu</h2>
+                    <p>Voici Notre menude Pizza disponible de notre réstaurant</p>
+                    <br>
+                    <a href="{{ path('commander_client', { 'id': r.id }) }}" class="btn btn-white btn-outline-white">Lancer une commande </a>
+                </div>
+            </div>
+        </div>
+        <div class="container-wrap">
+            <div class="row no-gutters d-flex">
+
+                {% for p in pizza %}
+                    <div class="col-lg-4 d-flex ftco-animate fadeInUp ftco-animated">
+                        <div class="services-wrap d-flex">
+                            <a href="#" class="img" style="background-image: url({{asset('theme/images/')}}{{ p.photo }});"></a>
+                            <div class="text p-4">
+                                <h3>{{ p.name }}</h3>
+                                <p>{{ p.description }} </p>
+
+                                <p class="price"><span>{{ p.price }} Dt</span> </p>
+                                <br>
+
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row justify-content-center mb-5 pb-3 mt-5 pt-5">
+                <div class="col-md-7 heading-section text-center ftco-animate">
+                    <h2 class="mb-4">Menu du restaurant {{ r.name }}</h2>
+                    <p class="flip"><span class="deg1"></span><span class="deg2"></span><span class="deg3"></span></p>
+                    <p class="mt-5">Ici vous trouvé le menu disponible pour les gens qui voulait lancer des commandes .. </p>
+                    <a href="{{ path('commander_client', { 'id': r.id }) }}" class="btn btn-white btn-outline-white">Lancer une commande</a>
+                </div>
+            </div>
+            <center>
+                <div class="row">
+                    {% for p in pizza  %}
+
+                        <div class="pricing-entry d-flex ftco-animate">
+                            <div class="img" style="background-image: url({{asset('theme/images/')}}{{ p.photo }});"></div>
+                            <div class="desc pl-3">
+
+                                <div class="d-flex text align-items-center">
+                                    <h3><span>{{ p.name }}</span></h3>
+                                    <span class="price">{{ p.price }} dt</span>
+                                </div>
+                                <div class="d-block align-content-center" >
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    {% endfor %}
+                </div>
+            </center>
+
+        </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Get Pizza</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nothing+You+Could+Do" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ asset('theme/css/open-iconic-bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('theme/css/animate.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('theme/css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('theme/css/owl.theme.default.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('theme/css/magnific-popup.css')}}">
+
+    <link rel="stylesheet" href="{{ asset('theme/css/aos.css')}}">
+
+    <link rel="stylesheet" href="{{ asset('theme/css/ionicons.min.css')}}">
+
+    <link rel="stylesheet" href="{{ asset('theme/css/bootstrap-datepicker.css')}}">
+    <link rel="stylesheet" href="{{ asset('theme/css/jquery.timepicker.css')}}">
+
+
+    <link rel="stylesheet" href="{{ asset('theme/css/flaticon.css')}}">
+    <link rel="stylesheet" href="{{ asset('theme/css/icomoon.css')}}">
+    <link rel="stylesheet" href="{{ asset('theme/css/style.css')}}">
+</head>
+<body>
+{% block navbar %}
+    {% if is_granted('ROLE_CLIENT') %}
+        <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+            <div class="container">
+                <a class="navbar-brand" href="#"><span class="flaticon-pizza-1 mr-1"></span>Get-Pizza<br><small>Espace Client</small></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="oi oi-menu"></span> Menu
+                </button>
+                <div class="collapse navbar-collapse" id="ftco-nav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active"><a href="{{ path('index') }}" class="nav-link">Acceuil</a></li>
+                        <li class="nav-item"><a href="{{ path('profil_client') }}" class="nav-link">Profil</a></li>
+                        <li class="nav-item"><a href="{{path('client')}}" class="nav-link">Restaurants</a></li>
+                        <li class="nav-item"><a href="{{ path('mesCommandes') }}" class="nav-link">Mes Commandes</a></li>
+                        </li>
+                        <li class="nav-item"><a href="#" class="nav-link"></a></li>
+                        </li>
+                        <li class="nav-item"><a href="#" class="nav-link"></a></li>
+                        </li>
+
+                        <li style="color: red;" class="{% if mainNavHome is defined %}active{% endif %}">
+                            <a class="nav-link" href="{{path('app_logout')}}">Se deconnecter</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    {% endif %}
+    {% if is_granted('ROLE_GERANT') %}
+        <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+            <div class="container">
+                <a class="navbar-brand" href="index.html"><span class="flaticon-pizza-1 mr-1"></span>Get-Pizza<br><small>Espace Gérant</small></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="oi oi-menu"></span> Menu
+                </button>
+                <div class="collapse navbar-collapse" id="ftco-nav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active"><a href="{{ path('index') }}" class="nav-link">Acceuil</a></li>
+                        <li class="nav-item"><a href="{{path('mesRestaurants')}}" class="nav-link">Mes Restaurants</a></li>
+                        <li class="nav-item"><a href="{{path('mesCommandesGerant')}}" mesCommandesGerant class="nav-link">Voir Commandes</a></li>
+                        </li>
+                        <li class="nav-item"><a href="#" class="nav-link"></a></li>
+                        </li>
+                        <li class="nav-item"><a href="#" class="nav-link"></a></li>
+                        </li>
+
+                        <li style="color: red;" class="{% if mainNavHome is defined %}active{% endif %}">
+                            <a class="nav-link" href="{{path('app_logout')}}">Se deconnecter</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    {% endif %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+            <div class="container">
+                <a class="navbar-brand" href="index.html"><span class="flaticon-pizza-1 mr-1"></span>Get-Pizza<br><small>Espace Admin</small></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="oi oi-menu"></span> Menu
+                </button>
+                <div class="collapse navbar-collapse" id="ftco-nav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active "><a href="{{ path('index') }}" class="nav-link">Acceuil</a></li>
+                        <li class="nav-item "><a href="{{ path('client_admin') }}" class="nav-link">Gérer Clients</a></li>
+                        <li class="nav-item"><a href="{{ path('gerant_admin') }}" class="nav-link">Gérer Restaurants</a></li>
+                        </li>
+                        <li class="nav-item"><a href="services.html" class="nav-link"></a></li>
+                        </li>
+                        <li class="nav-item"><a href="services.html" class="nav-link"></a></li>
+                        </li>
+                        <li class="nav-item"><a href="services.html" class="nav-link"></a></li>
+                        </li>
+
+                        <li style="color: red;" class="{% if mainNavHome is defined %}active{% endif %}">
+                            <a class="nav-link" href="{{path('app_logout')}}">Se deconnecter</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    {% endif %}
+
+
+{% endblock %}
+
+
+<!-- END nav -->
+{% block slider %}
+
+<section class="home-slider owl-carousel img" style="{{ asset('background-image: url(theme/images/bg_1.jpg);')}}">
+    {% if not is_granted('ROLE_ADMIN') %}
+
+    <div class="slider-item">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row slider-text align-items-center" data-scrollax-parent="true">
+
+                <div class="col-md-6 col-sm-12 ftco-animate">
+                    <span class="subheading">Délicieux Pizza</span>
+                    <h1 class="mb-4"></h1>
+                    <p class="mb-4 mb-md-5">Nos chefs capable de vous offrir la meilleur pizza en Tunisie</p>
+                    {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %} <p><a href="{{ path('app_login') }}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Se connecter</a> <a href="{{ path('app_register') }}" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Créer votre Compte</a></p> {% else %}   {% endif %}
+                </div>
+                <div class="col-md-6 ftco-animate">
+                    <img src="{{ asset('theme/images/bg_1.png') }}" class="img-fluid" alt="">
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="slider-item">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row slider-text align-items-center" data-scrollax-parent="true">
+
+                <div class="col-md-6 col-sm-12 order-md-last ftco-animate">
+                    <span class="subheading">Livraison rapide</span>
+                    <h1 class="mb-4">Livraison de pizza</h1>
+                    <p class="mb-4 mb-md-5">Nos livreurs et nos chefs sont toujours disponibles pour vos préparer et livrer vos commandes</p>
+                    {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %} <p><a href="{{ path('app_login') }}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Se connecter</a> <a href="{{ path('app_register') }}" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Créer votre Compte</a></p> {% else %}   {% endif %}
+
+                </div>
+                <div class="col-md-6 ftco-animate">
+                    <img src="{{ asset('theme/images/bg_2.png') }}" class="img-fluid" alt="">
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}
+
+</section>
+
+{% block container %}
+<section class="ftco-intro">
+    <div class="container-wrap">
+        <div class="wrap d-md-flex">
+            <div class="info">
+                <div class="row no-gutters">
+                    <div class="col-md-4 d-flex ftco-animate">
+                        <div class="icon"><span class="icon-phone"></span></div>
+                        <div class="text">
+                            <h3>+216 50505050</h3>
+                            <p>Contacter nous </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex ftco-animate">
+                        <div class="icon"><span class="icon-my_location"></span></div>
+                        <div class="text">
+                            <h3>adresse : 12 rue ........</h3>
+                            <p>Tunis , Tunisie .. </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex ftco-animate">
+                        <div class="icon"><span class="icon-clock-o"></span></div>
+                        <div class="text">
+                            <h3>Tous les jours de la semaines </h3>
+                            <p>24 h / 24 h</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="social d-md-flex pl-md-5 p-4 align-items-center">
+                <ul class="social-icon">
+                    <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                    <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                    <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+<section class="ftco-about d-md-flex">
+    <div class="one-half img" style="{{ asset('background-image: url(images/about.jpg);')}}">
+        {% block login %}
+        {% endblock %}
+    </div>
+    <div class="one-half ftco-animate">
+        <div class="heading-section ftco-animate ">
+            <h2 class="mb-4">Bienvenue<span class="flaticon-pizza">Get-Pizza</span>  Restaurant</h2>
+        </div>
+        <div>
+            <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. But nothing the copy said could convince her and so it didn’t take long until a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged her into their agency, where they abused her for their.</p>
+        </div>
+    </div>
+</section>
+
+{% block services %}
+<section class="ftco-section ftco-services">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+            <div class="col-md-7 heading-section ftco-animate text-center">
+                <h2 class="mb-4">Nos services</h2>
+                <p>Découvrer nos services</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 ftco-animate">
+                <div class="media d-block text-center block-6 services">
+                    <div class="icon d-flex justify-content-center align-items-center mb-5">
+                        <span class="flaticon-diet"></span>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="heading">Healthy Foods</h3>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 ftco-animate">
+                <div class="media d-block text-center block-6 services">
+                    <div class="icon d-flex justify-content-center align-items-center mb-5">
+                        <span class="flaticon-bicycle"></span>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="heading">Livraison rapide</h3>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 ftco-animate">
+                <div class="media d-block text-center block-6 services">
+                    <div class="icon d-flex justify-content-center align-items-center mb-5"><span class="flaticon-pizza-1"></span></div>
+                    <div class="media-body">
+                        <h3 class="heading">Pizza originale</h3>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+{% block contact %}
+
+<section class="ftco-appointment">
+    <div class="overlay"></div>
+    <div class="container-wrap">
+        <div class="row no-gutters d-md-flex align-items-center">
+            <div class="col-md-6 d-flex align-self-stretch">
+                <div id="map"></div>
+            </div>
+            <div class="col-md-6 appointment ftco-animate">
+                <h3 class="mb-3">Nous contacter</h3>
+                <form action="#" class="appointment-form">
+                    <div class="d-md-flex">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Nom">
+                        </div>
+                    </div>
+                    <div class="d-me-flex">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Prénom">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="" id="" cols="30" rows="3" class="form-control" placeholder="Message"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Envoyer" class="btn btn-primary py-3 px-4">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+<footer class="ftco-footer ftco-section img">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-3 col-md-6 mb-5 mb-md-5">
+                <div class="ftco-footer-widget mb-4">
+                    <h2 class="ftco-heading-2">A propos  de nous</h2>
+                    <p>Notre plateforme vas vous facilité la prise des commandes des pizza vaec des restaurant de haute qualité</p>
+                    <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+                        <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                        <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                        <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-5 mb-md-5">
+                <div class="ftco-footer-widget mb-4">
+                    <h2 class="ftco-heading-2">De</h2>
+                    <div class="block-21 mb-4 d-flex">
+                        <a class="blog-img mr-4" style={{ asset('background-image: url(theme/images/image_2.jpg);')}}></a>
+                        <div class="text">
+                            <h3 class="heading"><a href="#">Autre menu disponible</a></h3>
+
+                        </div>
+                    </div>
+                    <div class="block-21 mb-4 d-flex">
+                        <a class="blog-img mr-4" style="background-image: url({{asset('theme/images/image_1.jpg')}});"></a>
+                        <div class="text">
+                            <h3 class="heading"><a href="#">Livraison rapide 24h /24 </a></h3>
+                            <div class="meta">
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 mb-5 mb-md-5">
+                <div class="ftco-footer-widget mb-4 ml-md-4">
+                    <h2 class="ftco-heading-2">Services</h2>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="py-2 d-block">Haute qualité</a></li>
+                        <li><a href="#" class="py-2 d-block">Livraison</a></li>
+                        <li><a href="#" class="py-2 d-block">Prise rapide du commande</a></li>
+                        <li><a href="#" class="py-2 d-block">Healthy food</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5 mb-md-5">
+                <div class="ftco-footer-widget mb-4">
+                    <h2 class="ftco-heading-2">Si vous avez des question?</h2>
+                    <div class="block-23 mb-3">
+                        <ul>
+                            <li><span class="icon icon-map-marker"></span><span class="text">Adesse responsable</span></li>
+                            <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
+                            <li><a href="#"><span class="icon icon-envelope"></span><span class="text">contact@getPizza.com</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+
+                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+<!-- loader -->
+<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+<script src="{{ asset('theme/js/jquery.min.js')}}"></script>
+<script src="{{ asset('theme/js/jquery-migrate-3.0.1.min.js')}}"></script>
+<script src="{{ asset('theme/js/popper.min.js')}}"></script>
+<script src="{{ asset('theme/js/bootstrap.min.js')}}"></script>
+<script src="{{ asset('theme/js/jquery.easing.1.3.js')}}"></script>
+<script src="{{ asset('theme/js/jquery.waypoints.min.js')}}"></script>
+<script src="{{ asset('theme/js/jquery.stellar.min.js')}}"></script>
+<script src="{{ asset('theme/js/owl.carousel.min.js')}}"></script>
+<script src="{{ asset('theme/js/jquery.magnific-popup.min.js')}}"></script>
+<script src="{{ asset('theme/js/aos.js')}}"></script>
+<script src="{{ asset('theme/js/jquery.animateNumber.min.js')}}"></script>
+<script src="{{ asset('theme/js/bootstrap-datepicker.js')}}"></script>
+<script src="{{ asset('theme/js/jquery.timepicker.min.js')}}"></script>
+<script src="{{ asset('theme/js/scrollax.min.js')}}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+<script src="{{ asset('theme/js/google-map.js')}}"></script>
+<script src="{{ asset('theme/js/main.js')}}"></script>
+
+</body>
+</html>

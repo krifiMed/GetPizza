@@ -1,0 +1,89 @@
+{% extends 'base2.html.twig' %}
+
+{% block navbar %}
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><span class="flaticon-pizza-1 mr-1"></span>Get-Pizza<br><small>Espace Gérant</small></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item "><a href="{{ path('index') }}" class="nav-link">Acceuil</a></li>
+                    <li class="nav-item active"><a href="{{path('mesRestaurants')}}" class="nav-link">Mes Restaurants</a></li>
+                    <li class="nav-item"><a href="{{path('mesCommandesGerant')}}" mesCommandesGerant class="nav-link">Voir Commandes</a></li>
+                    </li>
+                    <li class="nav-item"><a href="#" class="nav-link"></a></li>
+                    </li>
+                    <li class="nav-item"><a href="#" class="nav-link"></a></li>
+                    </li>
+
+                    <li style="color: red;" class="{% if mainNavHome is defined %}active{% endif %}">
+                        <a class="nav-link" href="{{path('app_logout')}}">Se deconnecter</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+{% block slider %}
+
+{% endblock %}
+
+{% block blog %}
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center mb-5 pb-3">
+                <div class="col-md-7 heading-section ftco-animate text-center">
+                    <h2 class="mb-4">Modifier un réstaurant</h2>
+                    <p> vous pouvez ici Modifier les informations du restaurant {{ r.name }}</p>
+
+                    {% if app.session.flashBag.has('error') %}
+                        <div class="alert alert-danger">
+                            {% for msg in app.session.flashBag.get('error') %}
+                                {{ msg }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <br>
+                    <br>
+                    <a href="#" class="block-20" style="background-image: url({{asset('theme/images/')}}{{ r.photo }});">
+                    </a>
+
+                    <form  method="post" class="contact-form" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" name = "name" minlength="10" maxlength="20" class="form-control" value="{{ r.name }}" placeholder="Nom de restaurant">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" name="tel" maxlength="8" class="form-control" value="{{ r.tel }}" placeholder="Tél">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" maxlength="20" name="adresse" value="{{ r.adresse }}" placeholder="adresse">
+                        </div>
+                        <div class="form-group">
+                            <input type="file" name="photo" class="form-control" placeholder="photo" value="{{ r.photo }}" enctype="multipart/form-data">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="description"  cols="30" rows="7" minlength="40" maxlength="60" class="form-control" placeholder="description">{{ r.description }}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <button   class="btn btn-primary py-3 px-5">Modifier</button>
+                        </div>
+                    </form>
+
+                </div>
+    </section>
+
+    </div>
+    </div>
+
+    </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends 'base2.html.twig' %}
+
+
+{% block navbar %}
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><span class="flaticon-pizza-1 mr-1"></span>Get-Pizza<br><small>Espace Client</small></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item "><a href="{{ path('index') }}" class="nav-link">Acceuil</a></li>
+                    <li class="nav-item"><a href="{{ path('profil_client') }}" class="nav-link">Profil</a></li>
+                    <li class="nav-item"><a href="{{path('client')}}" class="nav-link">Restaurants</a></li>
+                    <li class="nav-item active"><a href="{{ path('mesCommandes') }}" class="nav-link">Mes Commandes</a></li>
+                    </li>
+                    <li class="nav-item"><a href="#" class="nav-link"></a></li>
+                    </li>
+                    <li class="nav-item"><a href="#" class="nav-link"></a></li>
+                    </li>
+
+                    <li style="color: red;" class="{% if mainNavHome is defined %}active{% endif %}">
+                        <a class="nav-link" href="{{path('app_logout')}}">Se deconnecter</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+{% block slider %}
+
+{% endblock %}
+
+{% block blog %}
+    <section class="ftco-about d-md-flex">
+        <div class="one-half img" style="background-image: url({{asset('theme/images/')}}{{ r.photo }});"></div>
+        <div class="one-half ftco-animate fadeInUp ftco-animated">
+            <div class="heading-section ftco-animate fadeInUp ftco-animated">
+                <h2 class="mb-4">Welcome to <span class="flaticon-pizza"></span> {{ r.name }}</h2>
+                <br>
+                <br>
+
+            </div>
+            <div>
+                <p>{{ r.description }}</p>
+                <p><span class="icon icon-map-marker"></span> {{ r.adresse }}</p>
+                <p><span class="icon icon-phone"></span> {{ r.tel }}</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center mb-5 pb-3">
+                <div class="col-md-7 heading-section ftco-animate text-center">
+                    <h2 class="mb-4">Lancer une commande de Pizza </h2>
+                    <p> vous pouvez Lancer une commande ...</p>
+
+                    <form  method="post" class="contact-form" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <select id="cars" name="name" class="form-control">
+                                        {% for p in pizza  %}
+                                            <option value="{{ p.name }}" class="bg-primary">{{ p.name }} - {{ p.price }} dt</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <select id="cars" name="type" class="form-control">
+                                            <option value="familialle" class="bg-primary">Familialle</option>
+                                            <option value="moyenne" class="bg-primary">Moyenne</option>
+                                            <option value="Mini" class="bg-primary">Mini</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                                <input type="number" class="form-control" name="quantite" min="1" max="100">
+                        </div>
+                        <br>
+                        <br>
+                        <div class="form-group">
+                            <button   class="btn btn-primary py-3 px-5">Ajouter</button>
+                        </div>
+                    </form>
+
+                </div>
+    </section>
+
+    </div>
+    </div>
+
+    </div>
+    </section>
+{% endblock %}
